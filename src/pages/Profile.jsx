@@ -38,7 +38,8 @@ const Profile = () => {
       <div className="mt-20 mx-[5%]">
         <h1 className="font-inter font-[500] text-2xl">Account Information</h1>
       </div>
-      <div className="flex-wrap gap-5 flex justify-center items-center mt-8 mb-16 mx-[5%]">
+      <div className="flex-wrap gap-5 flex justify-center items-center mt-8 mb-16 mx-[5%]
+                      md:grid md:justify-normal md:grid-cols-2 lg:grid-cols-3 ">
         {accountDetails.map((item) => (<AccountInfo key={item.title} title={item.title} details={item.details} />))}
       </div>
       <Footer />

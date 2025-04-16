@@ -12,7 +12,8 @@ const Cat = ({obj}) => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <h3 className="font-judson text-4xl font-bold text-white">
+      <h3 className="font-judson text-2xl pr-9 md:pr-0
+      md:text-4xl font-bold text-white">
        { obj.name}
       </h3>
     </div>
