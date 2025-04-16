@@ -1,13 +1,57 @@
+import CollectionCard from "../components/CollectionCard";
 const Collection = () => {
+    const collect = [
+        {
+          id: 1,
+          img: "/images/model.png",
+          name: "men summer collection",
+
+        },
+        {
+          id: 2,
+          img: "/images/model4.png",
+          name: "women sport collection",
+
+        },
+        {
+          id: 3,
+          img: "/images/model2.png",
+          name: "women new sport collection",
+
+        },
+        {
+          id: 4,
+          img: "/images/model3.png",
+          name: "women flexible collection",
+
+        },
+        {
+            id: 5,
+            img: "/images/model1.png",
+            name: "men casual  collection",
+
+          }
+      ];
   return (
-    <div className="px-[5%] font-judson">
-      <h1 className="text-4xl lg:text-7xl font-[400] text-[#222222]">
-        Our <br />
-        <span className="font-bold ">Best Picks For You</span>
+    <div className=" font-judson overflow-hidden">
+      <h1 className="px-[5%] text-xl md:text-4xl lg:text-5xl xl:text-7xl font-[400] text-[#222222] mb-20">
+        Explore Our Must Have <br />
+        <span className="font-bold ">summer Collections And Stay Trendy</span>
       </h1>
 
-      <div className="flex flex-wrap gap-4 justify-center items-center mt-10">
-
+      <div className="grid grid-cols-1 lg:grid-cols-3 w-full h-[680px] gap-5 mb-20">
+        <div className="flex flex-col h-full gap-5 w-full">
+          <CollectionCard obj ={collect[0]}/>
+          
+          <CollectionCard obj={collect[1]}/>
+        </div>
+        <div className="flex h-full">
+          <CollectionCard obj={collect[2]}/>
+        </div>
+        <div className="flex flex-col h-full gap-5">
+          <CollectionCard obj={collect[3]} />
+          <CollectionCard obj={collect[4]} />
+        </div>
       </div>
     </div>
   );
