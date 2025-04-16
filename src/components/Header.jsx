@@ -37,15 +37,15 @@ const Header = () => {
   return (
     <>
       <div className="px-[5%] py-4 flex w-full items-center border-b border-[#C5C5C580] fixed bg-white z-30 justify-between">
-        <h1 className="font-judson pb-2 text-[30px] leading-[100%] font-[700] flex items-center">
+        <h1 className="font-judson text-[30px] leading-[100%] font-[700]">
           CRYMSUM
         </h1>
         <div className="flex items-center h-full ">
-          <form className="hidden lg:block relative">
+          <form className="hidden md:block relative">
             <input
               type="text"
               placeholder="Search by product, category or collection"
-              className="border border-[#C5C5C580] px-10 py-2  w-[400px] text-[14px] lg:text-[12px] font-judson font-[400] placeholder:font-judson placeholder:font-[400] placeholder:text-[#7E7E7ECC] lg:placeholder:text-[12px]  focus:outline-none focus:border-[#000000] focus:ring-0"
+              className="border border-[#C5C5C580] px-10 py-2 md:w-[300px] lg:w-[400px] text-[14px] lg:text-[12px] font-judson font-[400] placeholder:font-judson placeholder:font-[400] placeholder:text-[#7E7E7ECC] lg:placeholder:text-[12px]  focus:outline-none focus:border-[#000000] focus:ring-0"
               onFocus={handleClick}
             />
             <img
@@ -59,7 +59,7 @@ const Header = () => {
               <img
                 src="images/search-normal.svg"
                 alt="search"
-                className="w-5 lg:w-7 cursor-pointer lg:hidden"
+                className="w-5 lg:w-7 cursor-pointer md:hidden"
                 onClick={toggleDropdown}
               />
             </li>

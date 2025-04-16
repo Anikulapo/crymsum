@@ -1,6 +1,6 @@
 const Arrow = () => {
     return(
-            <div className="group bg-black w-[11%] h-[40px] rounded-full 
+            <div className="group bg-black lg:w-[11%] w-[40px] md:w-[50px] md:h-[50px] lg:[40px] h-[40px] rounded-full 
             cursor-pointer hover:w-[90px] hover:px-[10px] transition-all duration-300 ease-[cubic-bezier(0.59, 0.13, 0.57, 0.98)]
              flex items-center justify-center
             ">

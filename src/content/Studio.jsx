@@ -12,8 +12,15 @@ const Studio = () => {
       >
         <div className="flex flex-col items-center justify-center">
           <p className="text-center text-xl font-[400]">NEW IN</p>
-          <h1 className="lg:text-5xl text-[35px] mb-4 font-[400]">STUDIO COLLECTION</h1>
-          <button className="text-center px-[35px] py-[13px] bg-white text-black hover:bg-black hover:text-white transition-colors cursor-pointer">SHOP NOW</button>
+          <h1 className="lg:text-5xl text-[35px] mb-4 font-[400]">
+            STUDIO COLLECTION
+          </h1>
+          <button
+            className="text-center px-[35px] py-[13px] bg-white text-black hover:bg-black
+           hover:text-white transition-colors duration-500 cursor-pointer text-sm tracking-[3px]"
+          >
+            SHOP NOW
+          </button>
         </div>
       </div>
     </div>

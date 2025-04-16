@@ -12,7 +12,7 @@ const Design = () => {
           </h1>
           <button
             className="text-center px-[35px] py-[7px]
-        bg-white text-black hover:bg-black hover:text-white transition-colors cursor-pointer
+        bg-white text-black hover:bg-black hover:text-white transition-colors duration-500 cursor-pointer
         text-[20px] tracking-[5px] font-judson font-[400]"
           >
             Start Designing

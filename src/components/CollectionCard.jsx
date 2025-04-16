@@ -8,7 +8,7 @@ const CollectionCard = ({ obj }) => {
                             hover:scale-105 cursor-pointer relative`}
     >
 
-      <div className="flex justify-center items-center gap-[40%] text-white w-full">
+      <div className="flex lg:justify-center justify-between items-center  lg:gap-[40%]  text-white w-full">
 
         <p className="font-judson font-[500] text-xl tracking-[-5%]">
           {obj.name.toUpperCase()}
