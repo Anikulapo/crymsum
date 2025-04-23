@@ -7,19 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../state/product/productSlice.js";
 
 const Clothes = () => {
-  const { items, status, error } = useSelector((state) => state.products);
+  const { items, status, error } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts()); //  this dispatches the thunk
+    dispatch(fetchProducts()); // Fetch products when the component mounts
+    // The fetchProducts function will handle loading and error states internally
   }, [dispatch]);
 
   return (
     <>
-      <div>
+
         <Header />
-      </div>
-      {status == "loading" && (
+
+      {status === "loading" && (
         <div className="pt-20">
           <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
             Loading.....
@@ -36,7 +37,7 @@ const Clothes = () => {
           </h1>
         </div>
       ) : (
-        <div className={ (status == "loading" || status == "failed")  ? "hidden" : "pt-20 block" }>
+        <div className={ (status === "loading" || status === "failed")  ? "hidden" : "pt-20 block" }>
           <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
             My Wishlist ({items.length} Items)
           </h1>
@@ -52,7 +53,7 @@ const Clothes = () => {
         </div>
       )}
       <div className={error ? "mt-20" : "mt-4"}>
-        <Footer></Footer>
+        <Footer/>
       </div>
     </>
   );

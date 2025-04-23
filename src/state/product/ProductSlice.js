@@ -10,7 +10,7 @@ const productSlice = createSlice({
   name : "product",
   initialState,
   reducers : {
-    setProducts: (state, action) => {
+    setProduct: (state, action) => {
       state.items = action.payload;
       state.status = 'succeeded'; // Set status to succeeded after fetching products
     },
@@ -36,11 +36,11 @@ export const fetchProducts = () => async (dispatch) => {
     }
     const data = await res.json();
     const cloth = data.filter(item => (item.category == "men's clothing" || item.category == "women's clothing"))
-    dispatch(setProducts(cloth));
+    dispatch(setProduct(cloth));
   } catch (error) {
-    dispatch(setError(error));
+    dispatch(setError(error.message));
   }
 };
 
-export const { setProducts, setLoading, setError } = productSlice.actions;
+export const { setProduct, setLoading, setError } = productSlice.actions;
 export default productSlice.reducer;
