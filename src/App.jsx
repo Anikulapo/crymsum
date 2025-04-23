@@ -1,14 +1,33 @@
+import Clothes from './context/Clothes'
 import Home from './pages/Home.jsx'
 import Profile from './pages/Profile.jsx'
+import MyOrder from './pages/My Order.jsx'
+import MyAddresses from './pages/MyAddresses.jsx'
+import MyPayments from './pages/MyPayments.jsx'
+import MyCart from './pages/MyCart.jsx'
+import Wishlist from './pages/Wishlist.jsx'
 import Product from './pages/Product.jsx'
 import { Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <Product />
+      <ScrollToTop></ScrollToTop>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/clothes" element={<Clothes />} />
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/order' element={<MyOrder/>}/>
+        <Route path='/address' element={<MyAddresses/>}/>
+        <Route path='/payment' element={<MyPayments/>}/>
+        <Route path='/cart' element={<MyCart/>}/>
+        <Route path='/wish' element={<Wishlist/>}/>
+        <Route path='/product/:id' element={<Product/>}/>
+        {/* Add other routes here */}
+      </Routes>
     </>
   )
 }

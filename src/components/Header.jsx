@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,9 +38,11 @@ const Header = () => {
   return (
     <>
       <div className="px-[5%] py-4 flex w-full items-center border-b border-[#C5C5C580] fixed bg-white z-30 justify-between">
-        <h1 className="font-judson text-[30px] leading-[100%] font-[700]">
-          CRYMSUM
-        </h1>
+        <Link to={"/"}>
+          <h1 className="font-judson text-[30px] leading-[100%] font-[700]">
+            CRYMSUM
+          </h1>
+        </Link>
         <div className="flex items-center h-full ">
           <form className="hidden md:block relative">
             <input
@@ -77,13 +80,15 @@ const Header = () => {
                 className="w-5 lg:w-7 cursor-pointer"
               />
             </li>
-            <li>
-              <img
-                src="images/user.svg"
-                alt="profile"
-                className="w-5 lg:w-7 cursor-pointer"
-              />
-            </li>
+            <Link to={"/profile"}>
+              <li>
+                <img
+                  src="images/user.svg"
+                  alt="profile"
+                  className="w-5 lg:w-7 cursor-pointer"
+                />
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
