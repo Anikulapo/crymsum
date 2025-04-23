@@ -47,8 +47,8 @@ const Profile = () => {
       </div>
       <div className="flex-wrap gap-5 flex justify-center items-center mt-8 mb-16 mx-[5%]
                       md:grid md:justify-normal md:grid-cols-2 lg:grid-cols-3 ">
-        {accountDetails.map((item) => (<Link to={item.link} key={item.title}>
-          <AccountInfo key={item.title} title={item.title} details={item.details} />
+        {accountDetails.map((item) => (<Link to={item.link} key={item.title} className="w-full">
+          <AccountInfo  title={item.title} details={item.details} />
         </Link>))}
       </div>
       <Footer />

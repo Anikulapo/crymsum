@@ -66,13 +66,15 @@ const Header = () => {
                 onClick={toggleDropdown}
               />
             </li>
-            <li>
-              <img
-                src="images/shopping-cart.svg"
-                alt="cart"
-                className="w-5 lg:w-7 cursor-pointer"
-              />
-            </li>
+            <Link to={"/cart"}>
+              <li>
+                <img
+                  src="images/shopping-cart.svg"
+                  alt="cart"
+                  className="w-5 lg:w-7 cursor-pointer"
+                />
+              </li>
+            </Link>
             <li>
               <img
                 src="images/heart.svg"
