@@ -1,43 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import ClothesCard from "../components/ClothesCrard.jsx";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../state/product/productSlice.js";
 
 const Clothes = () => {
-  const BaseUrl = "https://fakestoreapi.com/";
-  const [cloth, setCloth] = useState([]);
-  const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { items, status, error } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const FetchClothes = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${BaseUrl}products`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        const clothes =  data.filter(
-          (item) => item.category == "men's clothing" || item.category == "women's clothing"
-        )
-        setCloth(clothes)
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    FetchClothes();
-  }, []);
+    dispatch(fetchProducts()); //  this dispatches the thunk
+  }, [dispatch]);
 
   return (
     <>
       <div>
         <Header />
       </div>
-      {isLoading && (
+      {status == "loading" && (
         <div className="pt-20">
           <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
             Loading.....
@@ -54,12 +36,12 @@ const Clothes = () => {
           </h1>
         </div>
       ) : (
-        <div className={ isLoading ? "hidden" : "pt-20 block" }>
+        <div className={ (status == "loading" || status == "failed")  ? "hidden" : "pt-20 block" }>
           <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
-            My Wishlist ({cloth.length} Items)
+            My Wishlist ({items.length} Items)
           </h1>
           <div className=" flex flex-wrap justify-center gap-8 pb-[10%] ">
-            {cloth.map((item) => {
+            {items.map((item) => {
               return (
               <Link to={`/product/${item.id}`} key={item.id}>
                 <ClothesCard obj={item} />

@@ -1,28 +1,46 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const fetchProducts = createAsyncThunk(
-    "product/fetch",
-    async () => {
-        try {
-            const response = await fetch(`https://fakestoreapi.com/products`);
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            const data = await response.json();
-            const clothes =  data.filter(
-              (item) => item.category == "men's clothing" || item.category == "women's clothing"
-            )
-            setCloth(clothes)
-          } catch (error) {
-            setError(error.message);
-          } finally {
-            setIsLoading(false);
-          }
-    }
-)
-
+const initialState = {
+  items: [],
+  status: 'idle',  // could be 'idle', 'loading', 'succeeded', or 'failed'
+  error: null
+};
 
 const productSlice = createSlice({
-    name :  "Clothes",
-    initialState,
+  name : "product",
+  initialState,
+  reducers : {
+    setProducts: (state, action) => {
+      state.items = action.payload;
+      state.status = 'succeeded'; // Set status to succeeded after fetching products
+    },
+    setLoading: (state) => {
+      state.status = "loading"; // Set status to loading when fetching products
+    },
+    setError : (state, action) => {
+      state.status = "failed"; // Set status to failed if there's an error
+      state.error = action.payload; // Store the error message
+    }
+  }
+
 })
+
+
+export const fetchProducts = () => async (dispatch) => {
+  dispatch(setLoading());
+
+  try {
+    const res = await fetch('https://fakestoreapi.com/products');
+    if (!res.ok) {
+      throw new Error('Network response was not ok ');
+    }
+    const data = await res.json();
+    const cloth = data.filter(item => (item.category == "men's clothing" || item.category == "women's clothing"))
+    dispatch(setProducts(cloth));
+  } catch (error) {
+    dispatch(setError(error));
+  }
+};
+
+export const { setProducts, setLoading, setError } = productSlice.actions;
+export default productSlice.reducer;
