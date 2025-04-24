@@ -3,7 +3,7 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import ClothesCard from "../components/ClothesCrard.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../state/product/ks.js";
+import { fetchProducts } from "../state/product/productSlice.js";
 import { selectCategory } from "../state/categories/categorySlice.js";
 
 const Clothes = () => {
