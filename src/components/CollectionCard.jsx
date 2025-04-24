@@ -8,14 +8,17 @@ const CollectionCard = ({ obj }) => {
                             hover:scale-105 cursor-pointer relative`}
     >
 
-      <div className="flex 
+      <div className="group
+                      flex 
                       xl:justify-center justify-between items-center 
                       lg:gap-[4%] xl:gap-[20%]  text-white w-full">
 
-        <p className="font-judson font-[500] text-xl tracking-[-5%]">
+        <p className="group font-judson font-[500] text-xl tracking-[-5%]">
           {obj.name.toUpperCase()}
         </p>
-        <Arrow />
+        <div className="group">
+          <Arrow />
+        </div>
       </div>
     </div>
   );

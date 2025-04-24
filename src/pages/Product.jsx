@@ -1,19 +1,26 @@
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
-import ProductCard from '../components/ProductCard.jsx';
+import ProductCard from '../content/ProductCard.jsx';
+import { useParams } from 'react-router-dom';
+import {  useSelector } from "react-redux";
+
 
 
 const Product = () => {
+  const { items } = useSelector((state) => state.product);
+  const { id } = useParams();
+  const product = items.find((item) => item.id === parseInt(id));
+  
 
   return(
     <div>
-      <Header></Header>
+      <Header/>
 
 
      
 
       <div>
-        <ProductCard />
+        <ProductCard obj={product}/>
       </div>
 
       <Footer />

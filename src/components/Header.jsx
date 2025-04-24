@@ -52,7 +52,7 @@ const Header = () => {
               onFocus={handleClick}
             />
             <img
-              src="images/search-normal.svg"
+              src="/images/search-normal.svg"
               alt="search"
               className="w-7cursor-pointer absolute z-10 top-1/2 left-3 transform -translate-y-1/2"
             />
@@ -60,7 +60,7 @@ const Header = () => {
           <ul className="flex items-center gap-5 h-full">
             <li>
               <img
-                src="images/search-normal.svg"
+                src="/images/search-normal.svg"
                 alt="search"
                 className="w-5 lg:w-7 cursor-pointer md:hidden"
                 onClick={toggleDropdown}
@@ -69,7 +69,7 @@ const Header = () => {
             <Link to={"/cart"}>
               <li>
                 <img
-                  src="images/shopping-cart.svg"
+                  src="/images/shopping-cart.svg"
                   alt="cart"
                   className="w-5 lg:w-7 cursor-pointer"
                 />
@@ -77,7 +77,7 @@ const Header = () => {
             </Link>
             <li>
               <img
-                src="images/heart.svg"
+                src="/images/heart.svg"
                 alt="wish"
                 className="w-5 lg:w-7 cursor-pointer"
               />
@@ -85,7 +85,7 @@ const Header = () => {
             <Link to={"/profile"}>
               <li>
                 <img
-                  src="images/user.svg"
+                  src="/images/user.svg"
                   alt="profile"
                   className="w-5 lg:w-7 cursor-pointer"
                 />
@@ -102,7 +102,7 @@ const Header = () => {
         } transition-transform duration-500 ease-in-out`}
       >
         <img
-          src="images/X.svg"
+          src="/images/X.svg"
           alt="close"
           className="w-5 absolute z-10 top-[2%] right-[5%] cursor-pointer"
           onClick={toggleDropdown}
@@ -115,7 +115,7 @@ const Header = () => {
               className="border border-[#C5C5C580] rounded-full px-10 py-2 w-full text-[14px] font-judson font-[400] placeholder:font-judson placeholder:font-[400] placeholder:text-[#7E7E7ECC] focus:outline-none focus:border-[#000000] focus:ring-0"
             />
             <img
-              src="images/search-normal.svg"
+              src="/images/search-normal.svg"
               alt="search"
               className="w-5 cursor-pointer absolute z-10 top-1/2 left-3 transform -translate-y-1/2"
             />
