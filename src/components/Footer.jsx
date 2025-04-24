@@ -21,7 +21,10 @@ const Footer = () => {
           </p>
           <ul className="flex gap-3 items-center">
             <li>
-              <a href="https://www.instagram.com/alash_tobi?igsh=dDN2eDgyenBqaHV3">
+              <a
+                href="https://www.instagram.com/alash_tobi?igsh=dDN2eDgyenBqaHV3"
+                target="blank"
+              >
                 <img src="/images/insta.svg" alt="insta" />
               </a>
             </li>
