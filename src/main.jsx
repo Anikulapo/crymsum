@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
-import { store } from "./state/store.js";
+import { store } from "./state/case.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
