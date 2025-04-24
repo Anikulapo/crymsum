@@ -3,7 +3,7 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import ClothesCard from "../components/ClothesCrard.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../state/product/productSlice.js";
+import { fetchProducts } from "../state/product/ks.js";
 import { selectCategory } from "../state/categories/categorySlice.js";
 
 const Clothes = () => {
@@ -14,16 +14,15 @@ const Clothes = () => {
 
   useEffect(() => {
     dispatch(fetchProducts()); // Fetch products when the component mounts
- 
   }, [dispatch]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (category === "all") {
-        setFilteredItems(items);
-      } else {
-        setFilteredItems(items.filter((item) => item.category === category));
-      }
-  },[items, category])
+      setFilteredItems(items);
+    } else {
+      setFilteredItems(items.filter((item) => item.category === category));
+    }
+  }, [items, category]);
 
   return (
     <>

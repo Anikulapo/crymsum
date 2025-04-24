@@ -3,24 +3,20 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import ClothesCard from "../components/ClothesCrard.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../state/product/productSlice.js";
-
+import { fetchProducts } from "../state/product/ks.js";
 
 const Rated = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const { items, status, error } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(fetchProducts()); // Fetch products when the component mounts
- 
   }, [dispatch]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setFilteredItems(items.filter((item) => item.rating.rate >= 4.0));
-    
-  },[items])
+  }, [items]);
 
   return (
     <>
