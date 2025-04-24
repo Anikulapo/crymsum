@@ -1,3 +1,5 @@
+
+
 const Picks = ({obj}) => {
   return (
     <div className=" overflow-hidden max-w-[400px]

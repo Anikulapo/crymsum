@@ -7,24 +7,28 @@ const BestPicks = () => {
       img: "/images/red.png",
       name: "Long sleeve Red shirt",
       location: "From United States",
+      rating: 5,
     },
     {
       id: 2,
       img: "/images/white.png",
       name: "White Sweater Casual",
       location: "From Indonesia",
+      rating: 4,
     },
     {
       id: 3,
       img: "/images/pink.png",
       name: "Pink t-shirt Oversized",
       location: "From Indonesia",
+      rating: 5,
     },
     {
       id: 4,
       img: "/images/black.png",
       name: "Black T-shirt Oversized",
       location: "From Indonesia",
+      rating: 5,
     },
   ];
 

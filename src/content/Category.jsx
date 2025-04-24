@@ -1,22 +1,27 @@
 import Cat from "../components/Cat.jsx";
+import { Link } from "react-router-dom";
 const Category = () => {
   const words = [
     {
       id: 1,
       name : "Oversized T-Shirts",
+      image : "/images/Oversized.jpeg",
     },
     {
       id: 2,
       name : "Classic Fit T-Shirts",
+      image : "/images/cat.png",
 
     },
     {
       id: 3,
       name : "Joggers",
+      image : "/images/joggers.jpeg",
     },
     {
       id: 4,
       name : "Jeans",
+      image : "/images/jeans.jpeg",
     }
 
   ]
@@ -30,7 +35,11 @@ const Category = () => {
       <div className="flex flex-wrap">
         {
           words.map((obj) => {
-            return (<Cat obj={obj} key={obj.id}/>
+            return (
+              <Link to={"/clothes"} className="lg:w-1/4 w-1/2">
+                <Cat obj={obj} key={obj.id}/>
+              </Link>
+
             );
           })
         }
