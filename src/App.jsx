@@ -10,7 +10,7 @@ import Product from './pages/Product.jsx'
 import { Routes, Route } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import { Toaster } from 'react-hot-toast';
-import Category from './pages/Category.jsx'
+import Rated from './pages/Rated.jsx'
 import './App.css'
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
         <Route path='/cart' element={<MyCart/>}/>
         <Route path='/wish' element={<Wishlist/>}/>
         <Route path='/product/:id' element={<Product/>}/>
-        <Route path='/category' element={<Category/>}/>
+        <Route path='/Rated' element={<Rated/>}/>
         {/* Add other routes here */}
       </Routes>
     </>

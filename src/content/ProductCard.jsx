@@ -31,7 +31,7 @@ const ProductCard = ({obj}) => {
           <p className="font-europa font-bold text-[8px] lg:text-[10px] cursor-pointer">Home</p>
         </Link>
         <img src="/images/path.svg" alt="slash" className="w-3 " />
-        <Link to={"/category"}>
+        <Link to={"/clothes"}>
           <div onClick={() => Category(obj.category)} >
             <p className="font-europa font-bold text-[8px] lg:text-[10px]  cursor-pointer">
               {obj.category }

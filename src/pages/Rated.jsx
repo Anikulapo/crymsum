@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../state/product/productSlice.js";
 import { selectCategory } from "../state/categories/categorySlice.js";
 
-const Category = () => {
+const Rated = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const { items, status, error } = useSelector((state) => state.product);
   const dispatch = useDispatch();
@@ -70,4 +70,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Rated;

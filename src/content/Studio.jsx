@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../state/categories/categorySlice.js";
+import toast from "react-hot-toast";
+
 const Studio = () => {
+  const dispatch = useDispatch();
+  const allCategory = () => {
+    dispatch(setCategory("all"));
+    toast.success("Default Category Selected");
+  }
   return (
     <div>
       <div
@@ -16,14 +25,16 @@ const Studio = () => {
           <h1 className="lg:text-5xl text-[35px] mb-4 font-[400]">
             STUDIO COLLECTION
           </h1>
-          <Link to={"/clothes"}>
-            <button
-              className="text-center px-[35px] py-[13px] bg-white text-black hover:bg-black
-             hover:text-white transition-colors duration-500 cursor-pointer text-sm tracking-[3px]"
-            >
-              SHOP NOW
-            </button>
-          </Link>
+          <div onClick={allCategory}> 
+            <Link to={"/clothes"}>
+              <button
+                className="text-center px-[35px] py-[13px] bg-white text-black hover:bg-black
+               hover:text-white transition-colors duration-500 cursor-pointer text-sm tracking-[3px]"
+              >
+                SHOP NOW
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

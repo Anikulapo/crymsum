@@ -51,30 +51,30 @@ const Collection = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 w-full h-[680px] gap-5 mb-20">
         <div className="flex flex-col h-full gap-5 w-full">
           <div onClick={maleCategory} className="flex h-full cursor-pointer">
-            <Link to={"/category"} className="w-full h-full">
+            <Link to={"/clothes"} className="w-full h-full">
               <CollectionCard obj={collect[0]} />
             </Link>
           </div>
 
           <div onClick={femaleCategory} className="flex h-full cursor-pointer">
-            <Link to={"/category"} className="w-full h-full">
+            <Link to={"/clothes"} className="w-full h-full">
               <CollectionCard obj={collect[1]} />
             </Link>
           </div>
         </div>
         <div onClick={femaleCategory} className="flex h-full cursor-pointer">
-          <Link to={"/category"} className="w-full h-full">
+          <Link to={"/clothes"} className="w-full h-full">
             <CollectionCard obj={collect[2]} />
           </Link>
         </div>
         <div className="flex flex-col h-full gap-5">
           <div onClick={femaleCategory} className="flex h-full cursor-pointer">
-            <Link to={"/category"} className="w-full h-full">
+            <Link to={"/clothes"} className="w-full h-full">
               <CollectionCard obj={collect[3]} />
             </Link>
           </div>
           <div onClick={maleCategory} className="flex h-full cursor-pointer">
-            <Link to={"/category"} className="w-full h-full">
+            <Link to={"/clothes"} className="w-full h-full">
               <CollectionCard obj={collect[4]} />
             </Link>
           </div>
