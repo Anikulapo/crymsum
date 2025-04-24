@@ -11,6 +11,7 @@ import { Routes, Route } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import { Toaster } from 'react-hot-toast';
 import Rated from './pages/Rated.jsx'
+import Search from './pages/Search.jsx'
 import './App.css'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/wish' element={<Wishlist/>}/>
         <Route path='/product/:id' element={<Product/>}/>
         <Route path='/rated' element={<Rated/>}/>
+        <Route path='/search' element={<Search/>}/>
         {/* Add other routes here */}
       </Routes>
     </>

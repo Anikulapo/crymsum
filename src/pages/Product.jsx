@@ -19,7 +19,7 @@ const Product = () => {
 
      
 
-      <div>
+      <div className='flex items-center justify-center'>
         <ProductCard obj={product}/>
       </div>
 

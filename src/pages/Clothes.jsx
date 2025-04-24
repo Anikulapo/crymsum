@@ -55,7 +55,7 @@ const Clothes = () => {
           <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
             All Products ({filteredItems.length} Items)
           </h1>
-          <div className=" flex flex-wrap justify-center gap-8 pb-[10%] ">
+          <div className=" flex flex-wrap justify-center gap-25 md:gap-10 pb-[10%] ">
             {filteredItems.map((item) => {
               return <ClothesCard obj={item} key={item.id} />;
             })}

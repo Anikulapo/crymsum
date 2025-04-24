@@ -7,7 +7,11 @@ import Design from "../content/Design.jsx";
 import Collection from "../content/Collection";
 import Studio from "../content/Studio.jsx";
 
+
 const Home = () => {
+
+
+
   return (
     <>
       <div className="">
