@@ -1,14 +1,23 @@
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectWish } from "../state/wish/wishSlice.js";
+import { addToWish, removeFromWish } from "../state/wish/wishSlice.js";
+
 
 const ClothesCard = ({obj}) => {
+  const dispatch = useDispatch()
+  const items = useSelector(selectWish)
+
+
+
   const handleAddToBag = (e) => {
     e.stopPropagation()
     toast.success("Item added to bag!");
   }
 
   return (
-    <div className=" overflow-hidden max-w-[310px] max-h-[600px] ">
+    <div className=" overflow-hidden max-w-[310px] max-h-[600px] relative">
       <Link to={`/product/${obj.id}`} className="w-full h-full">
         <div className="relative w-[310px] h-[330px] bg-white flex items-center justify-center overflow-hidden">
           <img
@@ -39,6 +48,13 @@ const ClothesCard = ({obj}) => {
               alt="bag"
               className="group z-10 absolute left-[17%] lg:left-[25%] cursor-pointer"
             />
+          </div>
+          <div className="absolute top-2 right-2 z-10">
+              {items.find((item)=> item.id === obj.id) ? (
+                  <img src="/images/active.svg" alt="wish" className="w-5 lg:w-7 cursor-pointer" onClick={()=> dispatch(removeFromWish(obj))} />
+              ):(
+                  <img src="/images/heart.svg" alt="wish" className="w-5 lg:w-7 cursor-pointer" onClick={()=> dispatch(addToWish(obj))} />
+              )}
           </div>
 
       

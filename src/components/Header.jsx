@@ -158,13 +158,15 @@ const Header = () => {
               </li>
             </Link>
             {/* Wishlist Icon */}
-            <li>
-              <img
-                src="/images/heart.svg"
-                alt="wish"
-                className="w-5 lg:w-7 cursor-pointer"
-              />
-            </li>
+            <Link to={"/wish"}>
+              <li>
+                <img
+                  src="/images/heart.svg"
+                  alt="wish"
+                  className="w-5 lg:w-7 cursor-pointer"
+                />
+              </li>
+            </Link>
             {/* Profile Icon */}
             <Link to={"/profile"}>
               <li>
