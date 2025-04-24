@@ -21,10 +21,17 @@ const Footer = () => {
           </p>
           <ul className="flex gap-3 items-center">
             <li>
-              <a href=""><img src="images/insta.svg" alt="insta" /></a>
+              <a href="">
+                <img src="/images/insta.svg" alt="insta" />
+              </a>
             </li>
             <li>
-              <a href="https://web.facebook.com/profile.php?id=100072561247044" target="blank"><img src="images/face.svg" alt="facebook" /></a>
+              <a
+                href="https://web.facebook.com/profile.php?id=100072561247044"
+                target="blank"
+              >
+                <img src="/images/face.svg" alt="facebook" />
+              </a>
             </li>
           </ul>
         </div>
@@ -101,7 +108,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="flex flex-col gap-2 lg:gap-4"> 
+          <div className="flex flex-col gap-2 lg:gap-4">
             <h3 className="font-judson leading-6 font-[500]  text-[14px] xl:text-xl">
               About
             </h3>
