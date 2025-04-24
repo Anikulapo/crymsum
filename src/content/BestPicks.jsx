@@ -1,4 +1,4 @@
-import Picks from "../components/picks";
+import Picks from "../components/Picks.jsx";
 import { Link } from "react-router-dom";
 const BestPicks = () => {
   const picks = [
