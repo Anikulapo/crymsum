@@ -29,7 +29,7 @@ function App() {
         <Route path='/cart' element={<MyCart/>}/>
         <Route path='/wish' element={<Wishlist/>}/>
         <Route path='/product/:id' element={<Product/>}/>
-        <Route path='/Rated' element={<Rated/>}/>
+        <Route path='/rated' element={<Rated/>}/>
         {/* Add other routes here */}
       </Routes>
     </>

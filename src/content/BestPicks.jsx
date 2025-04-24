@@ -1,4 +1,5 @@
 import Picks from "../components/picks";
+import { Link } from "react-router-dom";
 const BestPicks = () => {
   const picks = [
     {
@@ -40,11 +41,13 @@ const BestPicks = () => {
         ))}
       </div>
 
-      <button className="
-      w-full border border-[#222222] text-[#222222] font-[400] font-judson text-xl tracking-[5px]
-      px-[10px] py-4 cursor-pointer 
-      hover:bg-[#222222] hover:text-white transition-colors duration-500"
-      >VIEW COLLECTIONS</button>
+      <Link to={"/rated"}>
+        <button className="
+        w-full border border-[#222222] text-[#222222] font-[400] font-judson text-xl tracking-[5px]
+        px-[10px] py-4 cursor-pointer
+        hover:bg-[#222222] hover:text-white transition-colors duration-500"
+        >VIEW COLLECTIONS</button>
+      </Link>
     </div>
   );
 };
