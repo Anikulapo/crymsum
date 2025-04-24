@@ -2,7 +2,7 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import Sale from "../content/Sale.jsx";
 import BestPicks from "../content/BestPicks.jsx";
-import Category from "../content/category.jsx";
+import Category from "../content/Category.jsx";
 import Design from "../content/Design.jsx";
 import Collection from "../content/Collection";
 import Studio from "../content/Studio.jsx";
