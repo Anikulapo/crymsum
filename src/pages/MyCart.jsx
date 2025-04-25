@@ -1,19 +1,19 @@
 
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
-  clearCart,
   increaseItemQuantity,
   decreaseItemQuantity,
 } from "../state/cart/cartSlice.js";
 import {
   selectCartItems,
   selectTotalPrice,
-  changeSize
+  changeSize,
 } from "../state/cart/cartSlice.js";
+import {placeOrder} from "../state/cart/cartSlice.js";
+
 
 const MyCart = () => {
   const dispatch = useDispatch();
@@ -22,13 +22,13 @@ const MyCart = () => {
   const totalPrice = useSelector(selectTotalPrice);
 
 
+
+
   const removeItem = (id) => {
     dispatch(removeFromCart(id));
   };
 
-  const clearAllItems = () => {
-    dispatch(clearCart());
-  };
+
 
   const increase = (id) => {
     dispatch(increaseItemQuantity(id));
@@ -39,8 +39,7 @@ const MyCart = () => {
   };
 
   const submitOrder = () => {
-    toast.success("Order placed successfully!");
-    clearAllItems();
+    dispatch(placeOrder());
   };
 
   return (
@@ -76,7 +75,7 @@ const MyCart = () => {
                         {item.title}
                       </p>
                       <p className="text-[#5F5F5F] font-inter text-[14px]">
-                        Price: ${item.price.toFixed(2)}
+                        Price: ₹{item.price.toFixed(2)}
                       </p>
                     </div>
                     <div className="flex justify-between items-center mt-2">
@@ -105,15 +104,17 @@ const MyCart = () => {
                             dispatch(
                               changeSize({
                                 id: item.id,
-                                newSize: e.target.value,
+                                size: e.target.value,
                               })
                             )
                           }
                         >
+                          <option value="XS">Extra Small</option>
                           <option value="S">Small</option>
                           <option value="M">Medium</option>
                           <option value="L">Large</option>
                           <option value="XL">Extra Large</option>
+                          <option value="XXL">Huge</option>
                         </select>
                       </div>
                       <button
@@ -135,7 +136,7 @@ const MyCart = () => {
               </h2>
               <div className="flex justify-between font-inter text-[14px] mb-2">
                 <p>Subtotal</p>
-                <p>${totalPrice.toFixed(2)}</p>
+                <p>₹{totalPrice.toFixed(2)}</p>
               </div>
               <div className="flex justify-between font-inter text-[14px] mb-4">
                 <p>Shipping</p>
@@ -143,10 +144,10 @@ const MyCart = () => {
               </div>
               <div className="flex justify-between font-inter text-[16px] font-medium border-t pt-3">
                 <p>Total</p>
-                <p>${totalPrice.toFixed(2)}</p>
+                <p>₹{totalPrice.toFixed(2)}</p>
               </div>
               <button
-                className="w-full mt-6 bg-black text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-gray-500 transition-colors duration-300"
+                className="w-full mt-6 bg-black text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-green-600 transition-colors duration-300"
                 onClick={submitOrder}
               >
                 Proceed to Checkout

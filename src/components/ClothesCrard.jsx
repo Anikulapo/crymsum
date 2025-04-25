@@ -35,7 +35,7 @@ const ClothesCard = ({obj}) => {
               {obj.title}
             </h3>
             <p className="font-judson text-[#5F5F5F]">{obj.category}</p>
-            <p className="text-[#202020] font-[600] font-judson">${obj.price}</p>
+            <p className="text-[#202020] font-[600] font-judson">₹{obj.price}</p>
           </div>
         </Link>
           <div 

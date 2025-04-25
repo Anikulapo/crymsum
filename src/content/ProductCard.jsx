@@ -59,7 +59,7 @@ const ProductCard = ({obj}) => {
       <div className="lg:flex lg:justify-center lg:pt-20">
         <div className="flex flex-col gap-10">
           <h1 className="lg:text-5xl text-3xl">{obj.title}</h1>
-          <p>${obj.price}</p>
+          <p>₹{obj.price}</p>
           <div className="flex flex-col gap-4">
             <h3>Size</h3>
             <ul className="flex gap-2 flex-wrap">
@@ -84,7 +84,7 @@ const ProductCard = ({obj}) => {
           </p>
           <div className="flex justify-between items-center p-0 relative">
             <button
-              onClick={(e) => handleAddToBag(e,obj)}
+              onClick={(e) => handleAddToBag(e,obj,selectedSize)}
               className="
           bg-[#202020] w-full text-white px-4 py-2 hover:bg-[#FF3D00]
           transition duration-300 ease-in-out cursor-pointer"

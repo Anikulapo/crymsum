@@ -1,10 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
+import {createOrder} from "../order/orderSlice.js";
 
 const getCartFromLocalStorage = () => {
   const stored = localStorage.getItem("cart");
   return stored ? JSON.parse(stored) : [];
 };
+
+
 
 const initialState = {
   items: getCartFromLocalStorage(),
@@ -21,7 +24,6 @@ const cartSlice = createSlice({
       const product = {
         ...action.payload,
         quantity: 1,
-        size: action.payload.size || "M",
       };
       const existingProduct = state.items.find(
         (item) => item.id === product.id
@@ -58,11 +60,9 @@ const cartSlice = createSlice({
       state.totalPrice = price;
     },
     clearCart(state) {
-      state.sent.push(state.items);
       state.items = [];
       state.totalQuantity = 0;
       state.totalPrice = 0;
-
       localStorage.removeItem("cart");
     },
     increaseItemQuantity(state, action) {
@@ -109,6 +109,31 @@ const cartSlice = createSlice({
     },
   },
 });
+
+export const placeOrder = createAsyncThunk(
+    "cart/placeOrder",
+    async (_, { getState, dispatch }) => {
+      const state = getState();
+      const cart = state.cart;
+  
+      const orderDetails = {
+        items: [...cart.items],
+        totalPrice: cart.totalPrice,
+        totalQuantity: cart.totalQuantity,
+      };
+  
+      // Dispatch the createOrder action
+      dispatch(createOrder(orderDetails));
+  
+      // Clear the cart after placing the order
+      dispatch(clearCart());
+  
+    }
+  );
+
+
+
+
 
 export const {
   addToCart,
