@@ -12,9 +12,13 @@ const ProductCard = ({obj}) => {
     dispatch(setCategory(category));
     toast.success(`${category} Category Selected`);
   };
-  const handleAddToBag = (e, product) => {
+  const handleAddToBag = (e, product, size) => {
       e.stopPropagation()
-      dispatch(addToCart(product))
+      const pack = {
+        ...product,
+        size: size ,
+      }
+      dispatch(addToCart(pack))
     }
 
 
