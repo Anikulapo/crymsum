@@ -14,13 +14,16 @@ const MyOrder = () => {
   const updateStatus = (orderId, status) => {
     setIsLoading(true);
     setTimeout(() => {
+      setIsLoading(false);
       dispatch(updateOrderStatus({ orderId, status }));
     }, 5000);
+    
   };
 
   const handleCancelOrder = (orderId) => {
     setIsLoadingG(true);
     setTimeout(() => {
+      setIsLoadingG(false);
       dispatch(cancelOrder(orderId))
     }, 5000);
     
