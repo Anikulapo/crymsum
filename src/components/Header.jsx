@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom"; // For programmatic navigation
 import { useState, useEffect } from "react"; // React hooks for state and lifecycle
 import { useDispatch, useSelector } from "react-redux"; // For dispatching actions and accessing Redux state
 import { fetchProducts } from "../state/product/productSlice.js"; // Action to fetch products from API/store
+import { selectTotalQuantity } from "../state/cart/cartSlice.js";
 
 const Header = () => {
+  const count = useSelector(selectTotalQuantity); // Get total quantity of items in cart from Redux store
   // State for filtered search results
   const [filteredItems, setFilteredItems] = useState([]);
   // State for search input
@@ -149,12 +151,17 @@ const Header = () => {
             </li>
             {/* Cart Icon */}
             <Link to={"/cart"}>
-              <li>
+              <li className="relative">
                 <img
                   src="/images/shopping-cart.svg"
                   alt="cart"
                   className="w-5 lg:w-7 cursor-pointer"
                 />
+                {count > 0 && (
+                  <div className="absolute top-[-15%] right-[-15%] bg-black text-white rounded-full md:w-4 md:h-4 w-3 h-3 flex items-center justify-center text-[12px] font-judson font-[500] z-200">
+                    {count}
+                  </div>
+                )}
               </li>
             </Link>
             {/* Wishlist Icon */}

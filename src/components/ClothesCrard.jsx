@@ -1,8 +1,9 @@
-import toast from "react-hot-toast";
+
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectWish } from "../state/wish/wishSlice.js";
 import { addToWish, removeFromWish } from "../state/wish/wishSlice.js";
+import { addToCart } from "../state/cart/cartSlice.js";
 
 
 const ClothesCard = ({obj}) => {
@@ -11,9 +12,11 @@ const ClothesCard = ({obj}) => {
 
 
 
-  const handleAddToBag = (e) => {
+
+
+  const handleAddToBag = (e, product) => {
     e.stopPropagation()
-    toast.success("Item added to bag!");
+    dispatch(addToCart(product))
   }
 
   return (
@@ -36,7 +39,7 @@ const ClothesCard = ({obj}) => {
           </div>
         </Link>
           <div 
-          onClick={handleAddToBag}
+          onClick={(e) => handleAddToBag(e,obj)}
           className=" group flex justify-between items-center p-0 relative  ">
             <button
             

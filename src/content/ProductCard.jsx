@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../state/categories/categorySlice.js";
+import { addToCart } from "../state/cart/cartSlice.js";
 
 
 const ProductCard = ({obj}) => {
@@ -11,15 +12,16 @@ const ProductCard = ({obj}) => {
     dispatch(setCategory(category));
     toast.success(`${category} Category Selected`);
   };
+  const handleAddToBag = (e, product) => {
+      e.stopPropagation()
+      dispatch(addToCart(product))
+    }
 
 
 
   const [selectedSize, setSelectedSize] = useState(null);
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const handleAddToBag = (e) => {
-    e.stopPropagation()
-    toast.success("Item added to bag!");
-  }
+
   return (
     <div className="px-[10%] lg:py-[12%] py-30 md:pt-[15%] grid lg:grid-cols-2 gap-20 font-inter  relative">
       <div className="flex gap-2 absolute 
@@ -78,7 +80,7 @@ const ProductCard = ({obj}) => {
           </p>
           <div className="flex justify-between items-center p-0 relative">
             <button
-              onClick={handleAddToBag}
+              onClick={(e) => handleAddToBag(e,obj)}
               className="
           bg-[#202020] w-full text-white px-4 py-2 hover:bg-[#FF3D00]
           transition duration-300 ease-in-out cursor-pointer"
