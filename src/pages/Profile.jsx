@@ -23,7 +23,7 @@ const Profile = () => {
              details : "View, modify payment methods",
          },
          {
-            link : "",
+            link : "/me",
             title : "My Profile",
              details : "Edit personal info, change password",
          },

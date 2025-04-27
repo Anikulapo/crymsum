@@ -3,7 +3,7 @@ import Footer from "../components/Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { updateOrderStatus, cancelOrder } from "../state/order/orderSlice.js";
 import { selectAllOrders } from "../state/order/orderSlice.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MyOrder = () => {
   const [isLoadingG, setIsLoadingG] = useState(false);
@@ -28,6 +28,10 @@ const MyOrder = () => {
     }, 5000);
     
   };
+
+  useEffect(()=>{
+    
+  },[])
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -72,7 +76,7 @@ const MyOrder = () => {
                     </p>
                     <p className="font-inter text-[14px] text-[#5F5F5F]">
                       Total: {""}
-                      <span className="text-black">₹{order.totalPrice}</span>
+                      <span className="text-black">₹{order.totalPrice.toFixed(2)}</span>
                     </p>
                   </div>
                 </div>

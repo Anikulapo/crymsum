@@ -34,7 +34,7 @@ const cartSlice = createSlice({
       } else {
         state.items.push(product);
         toast.success(`Item added to cart`);
-        state.totalQuantity += 1;
+        state.totalQuantity = state.items.length;
       }
       localStorage.setItem("cart", JSON.stringify(state.items));
 
@@ -51,7 +51,7 @@ const cartSlice = createSlice({
         state.items = state.items.filter((item) => item.id !== productId);
         toast.error(`Item removed from cart`);
         localStorage.setItem("cart", JSON.stringify(state.items));
-        state.totalQuantity -= 1;
+        state.totalQuantity = state.items.length;
       }
       const price = state.items.reduce(
         (total, item) => total + item.price * item.quantity,

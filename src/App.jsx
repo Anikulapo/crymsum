@@ -12,6 +12,7 @@ import ScrollToTop from './components/ScrollToTop.jsx'
 import { Toaster } from 'react-hot-toast';
 import Rated from './pages/Rated.jsx'
 import Search from './pages/Search.jsx'
+import MyProfile from './pages/MyProfile.jsx'
 import './App.css'
 
 function App() {
@@ -32,9 +33,12 @@ function App() {
         <Route path='/product/:id' element={<Product/>}/>
         <Route path='/rated' element={<Rated/>}/>
         <Route path='/search' element={<Search/>}/>
+        <Route path='/me' element={<MyProfile/>}/>
         {/* Add other routes here */}
       </Routes>
     </>
+
+
   )
 }
 

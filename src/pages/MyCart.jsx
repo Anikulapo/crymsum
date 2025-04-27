@@ -12,10 +12,12 @@ import {
   selectTotalPrice,
   changeSize,
 } from "../state/cart/cartSlice.js";
-import {placeOrder} from "../state/cart/cartSlice.js";
+import SelectPay from "../content/SelectPay.jsx";
+import { useState } from "react";
 
 
 const MyCart = () => {
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
@@ -38,8 +40,8 @@ const MyCart = () => {
     dispatch(decreaseItemQuantity(id));
   };
 
-  const submitOrder = () => {
-    dispatch(placeOrder());
+  const submit = () => {
+    setOpen(!open);
   };
 
   return (
@@ -148,7 +150,7 @@ const MyCart = () => {
               </div>
               <button
                 className="w-full mt-6 bg-black text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-green-600 transition-colors duration-300"
-                onClick={submitOrder}
+                onClick={submit}
               >
                 Proceed to Checkout
               </button>
@@ -156,6 +158,13 @@ const MyCart = () => {
           </div>
         )}
       </div>
+
+        <SelectPay
+        open ={open}
+        close={submit}
+        />
+
+
       <Footer />
     </div>
   );
