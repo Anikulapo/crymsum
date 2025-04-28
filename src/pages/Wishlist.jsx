@@ -17,7 +17,7 @@ const Wishlist = () => {
                 <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
                   WishList ({item.length} Items)
                 </h1>
-                <div className=" flex flex-wrap justify-center gap-25 md:gap-15 lg:gap-8 pb-[10%] ">
+                <div className=" flex flex-wrap justify-center md:justify-start gap-25 md:gap-15 lg:gap-8 pb-[10%] md:px-[5%]">
                     {item.length === 0 ? (
                         <div className="w-full h-[400px] flex flex-col items-center justify-center mb-6">
                         <p className="text-[#5F5F5F] font-inter text-xl lg:text-5xl">

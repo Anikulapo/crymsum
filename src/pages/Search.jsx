@@ -29,7 +29,7 @@ const Search = () => {
               <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
                 "<span className="capitalize">{query}</span>" Products ({filteredProducts.length} Items)
               </h1>
-              <div className=" flex flex-wrap justify-center gap-25 md:gap-15 lg:gap-8 pb-[10%] ">
+              <div className=" flex flex-wrap justify-center md:justify-start gap-25 md:gap-15 lg:gap-8 pb-[10%] md:px-[5%]">
                 {filteredProducts.map((item) => {
                   return <ClothesCard obj={item} key={item.id} />;
                 })}

@@ -5,10 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../state/categories/categorySlice.js";
 import { addToCart } from "../state/cart/cartSlice.js";
 import { selectCartItems } from "../state/cart/cartSlice.js";
-import {
-  increaseItemQuantity,
-  decreaseItemQuantity,
-} from "../state/cart/cartSlice.js";
+
 
 const ProductCard = ({ obj }) => {
   const cartItems = useSelector(selectCartItems);
