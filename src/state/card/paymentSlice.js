@@ -26,6 +26,7 @@ const paymentSlice = createSlice({
         state.items.push(newCard);
         state.paymentOptions += 1;
         toast.success("A New Payment option as been Added!");
+        localStorage.setItem("payment",JSON.stringify(state.items))
       } else {
         toast.error("This Card Already Exists");
       }
@@ -35,6 +36,7 @@ const paymentSlice = createSlice({
       state.items = state.items.filter((item) => item.id !== cardId);
       state.paymentOptions -= 1;
       toast.success("This Card was removed!");
+      localStorage.setItem("payment",JSON.stringify(state.items))
     },
   },
 });
