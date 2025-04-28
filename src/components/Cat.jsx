@@ -1,6 +1,7 @@
-const Cat = ({obj}) => {
+const Cat = ({obj, click}) => {
   return (
     <div
+      onClick={click}
       className="max-w-full pr-[5%] min-w-full max-h-[434px] min-h-[300px] bg-white flex justify-start items-end cursor-pointer
        overflow-hidden
        md:min-h-[400px]

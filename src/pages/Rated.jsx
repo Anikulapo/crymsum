@@ -4,6 +4,7 @@ import Footer from "../components/Footer.jsx";
 import ClothesCard from "../components/ClothesCrard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../state/product/productSlice.js";
+import { Rings } from "react-loader-spinner";
 
 const Rated = () => {
   const [filteredItems, setFilteredItems] = useState([]);
@@ -24,11 +25,16 @@ const Rated = () => {
 
       {status === "loading" && (
         <div className="pt-20">
-          <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
-            Loading.....
-          </h1>
-          <div className=" flex w-full h-full items-center justify-center pt-[5%] pb-[10%]">
-            <img src="/images/load.svg" alt="Loading" />
+          <div className=" flex w-screen h-screen items-center justify-center pt-[5%] pb-[10%]">
+            <Rings
+              visible={true}
+              height="100"
+              width="100"
+              color="#000000"
+              ariaLabel="rings-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
           </div>
         </div>
       )}
@@ -47,7 +53,7 @@ const Rated = () => {
           }
         >
           <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
-            All Products ({filteredItems.length} Items)
+            Best Picks ({filteredItems.length} Items)
           </h1>
           <div className=" flex flex-wrap justify-center gap-25 md:gap-15 lg:gap-8 pb-[10%] ">
             {filteredItems.map((item) => {

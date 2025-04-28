@@ -11,7 +11,7 @@ const CollectionCard = ({ obj }) => {
       <div className="group
                       flex 
                       xl:justify-center justify-between items-center 
-                      lg:gap-[4%] xl:gap-[20%]  text-white w-full">
+                      lg:gap-[4%] xl:gap-[30%]  text-white w-full">
 
         <p className="group font-judson font-[500] text-xl tracking-[-5%]">
           {obj.name.toUpperCase()}

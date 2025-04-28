@@ -4,8 +4,10 @@ import { useState, useEffect } from "react"; // React hooks for state and lifecy
 import { useDispatch, useSelector } from "react-redux"; // For dispatching actions and accessing Redux state
 import { fetchProducts } from "../state/product/productSlice.js"; // Action to fetch products from API/store
 import { selectTotalQuantity } from "../state/cart/cartSlice.js";
+import { reset, selectCartItems } from "../state/cart/cartSlice.js";
 
 const Header = () => {
+  const cart = useSelector(selectCartItems)
   const count = useSelector(selectTotalQuantity); // Get total quantity of items in cart from Redux store
   // State for filtered search results
   const [filteredItems, setFilteredItems] = useState([]);
@@ -41,6 +43,10 @@ const Header = () => {
   useEffect(() => {
     document.body.style.overflow = "auto";
   }, []);
+
+  useEffect(()=>{
+    dispatch(reset())
+  },[cart, dispatch])
 
   const navigate = useNavigate();
 

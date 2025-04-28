@@ -7,12 +7,17 @@ const getCartFromLocalStorage = () => {
   return stored ? JSON.parse(stored) : [];
 };
 
+const getTotalPrice = ()=> {
+  const stored = localStorage.getItem('price')
+  return stored ? JSON.parse(stored) : 0;
+}
+
 
 
 const initialState = {
   items: getCartFromLocalStorage(),
   sent: [],
-  totalQuantity: 0,
+  totalQuantity: getTotalPrice(),
   totalPrice: 0,
 };
 
@@ -43,6 +48,7 @@ const cartSlice = createSlice({
         0
       );
       state.totalPrice = price;
+      localStorage.setItem("price", JSON.stringify(state.totalPrice));
     },
     removeFromCart(state, action) {
       const productId = action.payload;
@@ -58,12 +64,14 @@ const cartSlice = createSlice({
         0
       );
       state.totalPrice = price;
+      localStorage.setItem("price", JSON.stringify(state.totalPrice));
     },
     clearCart(state) {
       state.items = [];
       state.totalQuantity = 0;
       state.totalPrice = 0;
       localStorage.removeItem("cart");
+      localStorage.removeItem("price")
     },
     increaseItemQuantity(state, action) {
       const productId = action.payload;
@@ -78,6 +86,7 @@ const cartSlice = createSlice({
         0
       );
       state.totalPrice = price;
+      localStorage.setItem("price", JSON.stringify(state.totalPrice));
     },
     decreaseItemQuantity(state, action) {
       const productId = action.payload;
@@ -98,6 +107,7 @@ const cartSlice = createSlice({
         0
       );
       state.totalPrice = price;
+      localStorage.setItem("price", JSON.stringify(state.totalPrice));
     },
     changeSize(state, action) {
       const { id, size } = action.payload;
@@ -106,7 +116,11 @@ const cartSlice = createSlice({
         existingProduct.size = size;
         localStorage.setItem("cart", JSON.stringify(state.items));
       }
+
     },
+    reset(state){
+      state.totalQuantity = state.items.length;
+    }
   },
 });
 
@@ -142,6 +156,7 @@ export const {
   increaseItemQuantity,
   decreaseItemQuantity,
   changeSize,
+  reset
 } = cartSlice.actions;
 export const selectCartItems = (state) => state.cart.items;
 export const selectTotalQuantity = (state) => state.cart.totalQuantity;

@@ -27,7 +27,7 @@ const Search = () => {
       
           <div className="pt-20">
               <h1 className="text-3xl mb-6 px-[5%] font-inter font-[500] text-[#222222]">
-                All Products ({filteredProducts.length} Items)
+                "<span className="capitalize">{query}</span>" Products ({filteredProducts.length} Items)
               </h1>
               <div className=" flex flex-wrap justify-center gap-25 md:gap-15 lg:gap-8 pb-[10%] ">
                 {filteredProducts.map((item) => {

@@ -1,4 +1,3 @@
-
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,23 +13,18 @@ import {
 } from "../state/cart/cartSlice.js";
 import SelectPay from "../content/SelectPay.jsx";
 import { useState } from "react";
-
+import { ThreeDots } from "react-loader-spinner";
 
 const MyCart = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
   const totalPrice = useSelector(selectTotalPrice);
 
-
-
-
   const removeItem = (id) => {
     dispatch(removeFromCart(id));
   };
-
-
 
   const increase = (id) => {
     dispatch(increaseItemQuantity(id));
@@ -81,43 +75,48 @@ const MyCart = () => {
                       </p>
                     </div>
                     <div className="flex justify-between items-center mt-2">
-                      <div className="flex gap-2 items-center">
-                        <button
-                          className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
-                          onClick={() => decrease(item.id)}
-                        >
-                          -
-                        </button>
-                        <span className="font-inter text-[14px]">
-                          {item.quantity}
-                        </span>
-                        <button
-                          className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
-                          onClick={() => increase(item.id)}
-                        >
-                          +
-                        </button>
-                      </div>
-
                       <div>
-                        <select
-                          value={item.size}
-                          onChange={(e) =>
-                            dispatch(
-                              changeSize({
-                                id: item.id,
-                                size: e.target.value,
-                              })
-                            )
-                          }
-                        >
-                          <option value="XS">Extra Small</option>
-                          <option value="S">Small</option>
-                          <option value="M">Medium</option>
-                          <option value="L">Large</option>
-                          <option value="XL">Extra Large</option>
-                          <option value="XXL">Huge</option>
-                        </select>
+                        <div className="flex gap-2 items-center">
+                          <button
+                            className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
+                            onClick={() => decrease(item.id)}
+                          >
+                            -
+                          </button>
+                          <span className="font-inter text-[14px]">
+                            {item.quantity}
+                          </span>
+                          <button
+                            className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
+                            onClick={() => increase(item.id)}
+                          >
+                            +
+                          </button>
+                        </div>
+                        <div>
+                          <select
+                            value={item.size}
+                            onChange={(e) =>
+                              dispatch(
+                                changeSize({
+                                  id: item.id,
+                                  size: e.target.value,
+                                })
+                              )
+                            }
+                          >
+                            <option value="XS">Extra Small</option>
+                            <option value="S">Small</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Large</option>
+                            <option value="XL">Extra Large</option>
+                            <option value="XXL">Huge</option>
+                          </select>
+                        </div>
+                        <p className="text-[#5F5F5F] font-inter text-[14px]">
+                          Total Price: ₹
+                          {(item.price * item.quantity).toFixed(2)}
+                        </p>
                       </div>
                       <button
                         className="text-red-500 text-sm font-inter underline cursor-pointer"
@@ -148,22 +147,37 @@ const MyCart = () => {
                 <p>Total</p>
                 <p>₹{totalPrice.toFixed(2)}</p>
               </div>
-              <button
-                className="w-full mt-6 bg-black text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-green-600 transition-colors duration-300"
-                onClick={submit}
-              >
-                Proceed to Checkout
-              </button>
+              {!open ? (
+                <button
+                  className="w-full mt-6 bg-black text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-green-600 transition-colors duration-300"
+                  onClick={submit}
+                >
+                  Proceed to Checkout
+                </button>
+              ) : (
+                <button
+                  className=" flex justify-center items-center
+                            w-full mt-6 bg-green-600 text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-green-600 transition-colors duration-300"
+                  onClick={submit}
+                >
+                  <ThreeDots
+                    visible={true}
+                    height="20"
+                    width="20"
+                    color="#FFFFFF"
+                    radius="9"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                </button>
+              )}
             </div>
           </div>
         )}
       </div>
 
-        <SelectPay
-        open ={open}
-        close={submit}
-        />
-
+      <SelectPay open={open} close={submit} />
 
       <Footer />
     </div>

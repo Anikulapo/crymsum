@@ -1,60 +1,78 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../state/categories/categorySlice.js";
 import { addToCart } from "../state/cart/cartSlice.js";
+import { selectCartItems } from "../state/cart/cartSlice.js";
+import {
+  increaseItemQuantity,
+  decreaseItemQuantity,
+} from "../state/cart/cartSlice.js";
 
+const ProductCard = ({ obj }) => {
+  const cartItems = useSelector(selectCartItems);
 
-const ProductCard = ({obj}) => {
   const dispatch = useDispatch();
   const Category = (category) => {
     dispatch(setCategory(category));
     toast.success(`${category} Category Selected`);
   };
   const handleAddToBag = (e, product, size) => {
-      e.stopPropagation()
-      const pack = {
-        ...product,
-        size: size ,
+    e.stopPropagation();
+    const pack = {
+      ...product,
+      size: size,
+      quantity : quantity 
+    };
+    dispatch(addToCart(pack));
+  };
+  const increase = () => {
+    setQuantity(quantity + 1);
+    };
+  
+    const decrease = () => {
+      if(quantity > 1){
+        setQuantity(quantity - 1);
       }
-      dispatch(addToCart(pack))
-    }
-
-
+      else{
+        toast.error("Quantity can't be less than 1")
+      }
+    };
 
   const [selectedSize, setSelectedSize] = useState(null);
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const [quantity, setQuantity] = useState(1)
 
   return (
     <div className="px-[10%] lg:py-[12%] py-30 md:pt-[15%] grid lg:grid-cols-2 gap-20 font-inter  relative">
-      <div className="flex gap-2 absolute 
+      <div
+        className="flex gap-2 absolute 
                       left-[5%]
                       md:left-10 
                       lg:top-[8%] lg:left-[5%] top-20 
-                      items-center justify-center ">
+                      items-center justify-center "
+      >
         <Link to={"/"}>
-          <p className="font-europa font-bold text-[8px] lg:text-[10px] cursor-pointer">Home</p>
+          <p className="font-europa font-bold text-[8px]  md:text-[15px] cursor-pointer">
+            Home
+          </p>
         </Link>
         <img src="/images/path.svg" alt="slash" className="w-3 " />
         <Link to={"/clothes"}>
-          <div onClick={() => Category(obj.category)} >
-            <p className="font-europa font-bold text-[8px] lg:text-[10px]  cursor-pointer">
-              {obj.category }
+          <div onClick={() => Category(obj.category)}>
+            <p className="font-europa font-bold text-[8px] md:text-[15px]  cursor-pointer capitalize">
+              {obj.category}
             </p>
           </div>
         </Link>
         <img src="/images/path.svg" alt="slash" className="w-3 " />
-        <p className="font-europa font-bold text-[8px] lg:text-[10px]  cursor-pointer">
+        <p className="font-europa font-bold text-[8px] md:text-[15px]  cursor-pointer">
           {obj.title}
         </p>
       </div>
       <div className="rounded-sm w-">
-        <img
-          src={obj.image}
-          alt="Product Image"
-          className="rounded-xl"
-        />
+        <img src={obj.image} alt="Product Image" className="rounded-xl" />
       </div>
       <div className="lg:flex lg:justify-center lg:pt-20">
         <div className="flex flex-col gap-10">
@@ -79,28 +97,45 @@ const ProductCard = ({obj}) => {
               ))}
             </ul>
           </div>
-          <p className="text-[#5F5F5F]">
-              {obj.description}
-          </p>
-          <div className="flex justify-between items-center p-0 relative">
+
+          <div className="flex gap-2 items-center">
             <button
-              onClick={(e) => handleAddToBag(e,obj,selectedSize)}
-              className="
-          bg-[#202020] w-full text-white px-4 py-2 hover:bg-[#FF3D00]
-          transition duration-300 ease-in-out cursor-pointer"
+              className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
+              onClick={decrease}
             >
-              Add to Bag
+              -
             </button>
-            <img
-              src="/images/shopping-bag.svg"
-              alt="bag"
-              className="z-10 absolute
-                        left-[25%]
-        
-                        md:left-[37%]
-                        lg:left-[25%]"
-            />
+            <span className="font-inter text-[14px]">{quantity}</span>
+            <button
+              className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
+              onClick={increase}
+            >
+              +
+            </button>
           </div>
+
+          <p className="text-[#5F5F5F]">{obj.description}</p>
+          {cartItems.find((item) => item.id === obj.id) ? (
+            <div className=" group flex justify-between items-center p-0 relative  ">
+              <button className="bg-green-600 w-full text-white px-4 py-2   cursor-pointer">
+                Added to Bag
+              </button>
+            </div>
+          ) : (
+            <div className=" group flex justify-between items-center p-0 relative  ">
+              <button
+                onClick={(e) => handleAddToBag(e, obj)}
+                className="bg-[#202020] w-full text-white px-4 py-2 group-hover:bg-[#FF3D00] transition duration-300 ease-in-out cursor-pointer"
+              >
+                Add to Bag
+              </button>
+              <img
+                src="/images/shopping-bag.svg"
+                alt="bag"
+                className="group z-10 absolute left-[17%] lg:left-[25%] cursor-pointer"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
