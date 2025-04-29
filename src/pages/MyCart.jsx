@@ -10,10 +10,12 @@ import {
   selectCartItems,
   selectTotalPrice,
   changeSize,
+  reset
 } from "../state/cart/cartSlice.js";
 import SelectPay from "../content/SelectPay.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+
 
 const MyCart = () => {
   const [open, setOpen] = useState(false);
@@ -37,6 +39,15 @@ const MyCart = () => {
   const submit = () => {
     setOpen(!open);
   };
+
+  
+
+  useEffect(()=>{
+    const handleLoad = ()=>{
+      dispatch(reset())
+    }
+      handleLoad()
+  },[cartItems,dispatch])
 
   return (
     <div className="flex flex-col min-h-screen">

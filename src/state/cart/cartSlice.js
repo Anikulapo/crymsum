@@ -120,6 +120,12 @@ const cartSlice = createSlice({
     },
     reset(state){
       state.totalQuantity = state.items.length;
+      const price = state.items.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      state.totalPrice = price;
+
     }
   },
 });
