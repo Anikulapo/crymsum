@@ -21,7 +21,7 @@ const Picks = ({obj}) => {
           {obj.name}
         </h3>
         <p className="font-judson text-[#5F5F5F]">{obj.location}</p>
-        <p className="text-[#202020] font-[600] font-judson">₹48.25</p>
+        <p className="text-[#202020] font-[600] font-judson">₦48.25</p>
       </div>
     </div>
   );

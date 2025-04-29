@@ -19,7 +19,7 @@ const Home = () => {
       </div>
       <div className="flex items-center justify-center pt-18 bg-[#202020] pb-1">
         <p className="font-judson text-white font-[400] ">
-          FREE SHIPPING ON ORDERS ABOVE RS. 2500
+          FREE SHIPPING ON ORDERS ABOVE NGN 2.50
         </p>
       </div>
       <div>

@@ -152,7 +152,7 @@ const MyCart = () => {
               </h2>
               <div className="flex justify-between font-inter text-[14px] mb-2">
                 <p>Subtotal</p>
-                <p>₹{totalPrice.toFixed(2)}</p>
+                <p>₦{totalPrice.toFixed(2)}</p>
               </div>
               <div className="flex justify-between font-inter text-[14px] mb-4">
                 <p>Shipping</p>
@@ -160,7 +160,7 @@ const MyCart = () => {
               </div>
               <div className="flex justify-between font-inter text-[16px] font-medium border-t pt-3">
                 <p>Total</p>
-                <p>₹{totalPrice.toFixed(2)}</p>
+                <p>₦{totalPrice.toFixed(2)}</p>
               </div>
 
               <div className="mt-4">
