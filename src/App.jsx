@@ -14,6 +14,7 @@ import Rated from './pages/Rated.jsx'
 import Search from './pages/Search.jsx'
 import MyProfile from './pages/MyProfile.jsx'
 import './App.css'
+import Signup from './content/SignIn.jsx'
 
 function App() {
 
@@ -34,8 +35,11 @@ function App() {
         <Route path='/rated' element={<Rated/>}/>
         <Route path='/search' element={<Search/>}/>
         <Route path='/me' element={<MyProfile/>}/>
-        {/* Add other routes here */}
-      </Routes>
+
+      </Routes> 
+     
+
+
     </>
 
 
