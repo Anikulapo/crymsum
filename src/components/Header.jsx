@@ -6,8 +6,11 @@ import { fetchProducts } from "../state/product/productSlice.js"; // Action to f
 import { selectTotalQuantity } from "../state/cart/cartSlice.js";
 import { reset, selectCartItems } from "../state/cart/cartSlice.js";
 import { selectUser } from "../state/user/userSlice.js";
+import { selectWish } from "../state/wish/wishSlice.js";
 
 const Header = () => {
+  const wish = useSelector(selectWish)
+  const wishNumber = wish.length;
   const user = useSelector(selectUser)
   const cart = useSelector(selectCartItems)
   const count = useSelector(selectTotalQuantity); // Get total quantity of items in cart from Redux store
@@ -48,7 +51,7 @@ const Header = () => {
 
   useEffect(()=>{
     dispatch(reset())
-  },[cart, dispatch])
+  },[cart, dispatch, wish])
 
   const navigate = useNavigate();
 
@@ -174,12 +177,17 @@ const Header = () => {
             </Link>
             {/* Wishlist Icon */}
             <Link to={"/wish"}>
-              <li>
+              <li className="relative">
                 <img
                   src="/images/heart.svg"
                   alt="wish"
                   className="w-5 lg:w-7 cursor-pointer"
                 />
+                {wishNumber > 0 && (
+                  <div className="absolute top-[-15%] right-[-15%] bg-black text-white rounded-full md:w-4 md:h-4 w-3 h-3 flex items-center justify-center text-[12px] font-judson font-[500] z-200">
+                    {wishNumber}
+                  </div>
+                )}
               </li>
             </Link>
             {/* Profile Icon */}

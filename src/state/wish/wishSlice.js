@@ -38,4 +38,4 @@ const wishSlice = createSlice({
 
 export default wishSlice.reducer;
 export const { addToWish, removeFromWish } = wishSlice.actions;
-export const selectWish = (state) => state.wish.item; // selector to get the wishlist from the state
+export const selectWish = (state) => state.wish.item; 
