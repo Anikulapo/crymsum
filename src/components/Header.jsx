@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux"; // For dispatching actio
 import { fetchProducts } from "../state/product/productSlice.js"; // Action to fetch products from API/store
 import { selectTotalQuantity } from "../state/cart/cartSlice.js";
 import { reset, selectCartItems } from "../state/cart/cartSlice.js";
+import { selectUser } from "../state/user/userSlice.js";
 
 const Header = () => {
+  const user = useSelector(selectUser)
   const cart = useSelector(selectCartItems)
   const count = useSelector(selectTotalQuantity); // Get total quantity of items in cart from Redux store
   // State for filtered search results
@@ -156,7 +158,7 @@ const Header = () => {
               />
             </li>
             {/* Cart Icon */}
-            <Link to={"/cart"}>
+            <Link to={user.length == 0 ? "/me": "/cart"}>
               <li className="relative">
                 <img
                   src="/images/shopping-cart.svg"

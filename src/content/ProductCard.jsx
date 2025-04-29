@@ -6,40 +6,37 @@ import { setCategory } from "../state/categories/categorySlice.js";
 import { addToCart } from "../state/cart/cartSlice.js";
 import { selectCartItems } from "../state/cart/cartSlice.js";
 
-
 const ProductCard = ({ obj }) => {
   const cartItems = useSelector(selectCartItems);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
   const Category = (category) => {
     dispatch(setCategory(category));
     toast.success(`${category} Category Selected`);
   };
-  const handleAddToBag = (e, product, size) => {
+  const handleAddToBag = (e, product, size, quantity) => {
     e.stopPropagation();
     const pack = {
       ...product,
       size: size,
-      quantity : quantity 
+      quantity: quantity,
     };
     dispatch(addToCart(pack));
   };
   const increase = () => {
     setQuantity(quantity + 1);
-    };
-  
-    const decrease = () => {
-      if(quantity > 1){
-        setQuantity(quantity - 1);
-      }
-      else{
-        toast.error("Quantity can't be less than 1")
-      }
-    };
+  };
 
-  const [selectedSize, setSelectedSize] = useState(null);
-  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const [quantity, setQuantity] = useState(1)
+  const decrease = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    } else {
+      toast.error("Quantity can't be less than 1");
+    }
+  };
 
   return (
     <div className="px-[10%] lg:py-[12%] py-30 md:pt-[15%] grid lg:grid-cols-2 gap-20 font-inter  relative">
@@ -74,7 +71,7 @@ const ProductCard = ({ obj }) => {
       <div className="lg:flex lg:justify-center lg:pt-20">
         <div className="flex flex-col gap-10">
           <h1 className="lg:text-5xl text-3xl">{obj.title}</h1>
-          <p>₹{obj.price}</p>
+          <p>₦{obj.price}</p>
           <div className="flex flex-col gap-4">
             <h3>Size</h3>
             <ul className="flex gap-2 flex-wrap">
@@ -95,20 +92,23 @@ const ProductCard = ({ obj }) => {
             </ul>
           </div>
 
-          <div className="flex gap-2 items-center">
-            <button
-              className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
-              onClick={decrease}
-            >
-              -
-            </button>
-            <span className="font-inter text-[14px]">{quantity}</span>
-            <button
-              className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
-              onClick={increase}
-            >
-              +
-            </button>
+          <div className="flex gap-5 items-center">
+            <h3 className="font-inter">Quantity</h3>
+            <div className="flex gap-2 items-center">
+              <button
+                className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
+                onClick={decrease}
+              >
+                -
+              </button>
+              <span className="font-inter text-[14px]">{quantity}</span>
+              <button
+                className="border border-gray-300 px-2 py-1 text-sm cursor-pointer"
+                onClick={increase}
+              >
+                +
+              </button>
+            </div>
           </div>
 
           <p className="text-[#5F5F5F]">{obj.description}</p>
@@ -121,7 +121,7 @@ const ProductCard = ({ obj }) => {
           ) : (
             <div className=" group flex justify-between items-center p-0 relative  ">
               <button
-                onClick={(e) => handleAddToBag(e, obj)}
+                onClick={(e) => handleAddToBag(e, obj, selectedSize, quantity)}
                 className="bg-[#202020] w-full text-white px-4 py-2 group-hover:bg-[#FF3D00] transition duration-300 ease-in-out cursor-pointer"
               >
                 Add to Bag

@@ -27,49 +27,50 @@ const Clothes = () => {
 
   return (
     <>
-      <Header />
-
-      {status === "loading" && (
-        <div className="pt-20">
-          <div className=" flex w-screen h-screen items-center justify-center pt-[5%] pb-[10%]">
-            <Rings
-              visible={true}
-              height="100"
-              width="100"
-              color="#000000"
-              ariaLabel="rings-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-            />
+      <div className="overflow-hidden">
+        <Header />
+        {status === "loading" && (
+          <div className="pt-20">
+            <div className=" flex w-screen h-screen items-center justify-center pt-[5%] pb-[10%]">
+              <Rings
+                visible={true}
+                height="100"
+                width="100"
+                color="#000000"
+                ariaLabel="rings-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            </div>
           </div>
-        </div>
-      )}
-      {error ? (
-        <div className=" flex w-screen h-screen items-center justify-center ">
-          <h1 className="lg:text-3xl mb-6 font-inter text-center font-[500] text-[#222222] pt-[10%]">
-            Sorry An Error Occured <br /> Please Try Again
-          </h1>
-        </div>
-      ) : (
-        <div
-          className={
-            status === "loading" || status === "failed"
-              ? "hidden"
-              : "pt-20 block"
-          }
-        >
-          <h1 className="text-3xl mb-6 px-[5%] capitalize font-inter font-[500] text-[#222222]">
-            {category} ({filteredItems.length} Items)
-          </h1>
-          <div className=" flex flex-wrap justify-center md:justify-start gap-25 md:gap-15 lg:gap-8 pb-[10%] md:px-[5%]">
-            {filteredItems.map((item) => {
-              return <ClothesCard obj={item} key={item.id} />;
-            })}
+        )}
+        {error ? (
+          <div className=" flex w-screen h-screen items-center justify-center ">
+            <h1 className="lg:text-3xl mb-6 font-inter text-center font-[500] text-[#222222] pt-[10%]">
+              Sorry An Error Occured <br /> Please Try Again
+            </h1>
           </div>
+        ) : (
+          <div
+            className={
+              status === "loading" || status === "failed"
+                ? "hidden"
+                : "pt-20 block"
+            }
+          >
+            <h1 className="text-3xl mb-6 px-[5%] capitalize font-inter font-[500] text-[#222222]">
+              {category} ({filteredItems.length} Items)
+            </h1>
+            <div className=" flex flex-wrap justify-center md:justify-start gap-25 md:gap-15 lg:gap-8 pb-[10%] md:px-[5%]">
+              {filteredItems.map((item) => {
+                return <ClothesCard obj={item} key={item.id} />;
+              })}
+            </div>
+          </div>
+        )}
+        <div className={error ? "mt-20" : "mt-4"}>
+          <Footer />
         </div>
-      )}
-      <div className={error ? "mt-20" : "mt-4"}>
-        <Footer />
       </div>
     </>
   );

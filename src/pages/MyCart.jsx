@@ -5,49 +5,52 @@ import {
   removeFromCart,
   increaseItemQuantity,
   decreaseItemQuantity,
-} from "../state/cart/cartSlice.js";
-import {
   selectCartItems,
   selectTotalPrice,
   changeSize,
-  reset
+  reset,
+  placeOrder
 } from "../state/cart/cartSlice.js";
-import SelectPay from "../content/SelectPay.jsx";
-import { useEffect, useState } from "react";
-import { ThreeDots } from "react-loader-spinner";
+import { useEffect } from "react";
+import { selectUser } from "../state/user/userSlice.js";
+import toast from "react-hot-toast";
+import { PaystackButton } from "react-paystack";
 
 
 const MyCart = () => {
-  const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
+  const publicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
+  const user = useSelector(selectUser) || {};
   const cartItems = useSelector(selectCartItems);
-
   const totalPrice = useSelector(selectTotalPrice);
+  const dispatch = useDispatch();
 
-  const removeItem = (id) => {
-    dispatch(removeFromCart(id));
+  const removeItem = (id) => dispatch(removeFromCart(id));
+  const increase = (id) => dispatch(increaseItemQuantity(id));
+  const decrease = (id) => dispatch(decreaseItemQuantity(id));
+
+  useEffect(() => {
+
+    return () => dispatch(reset());
+  }, [dispatch]);
+
+  const componentProps = {
+    currency: "NGN",
+    email: user[0].email,
+    amount: totalPrice * 100,
+    metadata: {
+      name: user[0].name,
+      phone: user[0].phone,
+    },
+    publicKey,
+    text: "Proceed to Checkout",
+    onSuccess: ({ reference }) => {
+      dispatch(placeOrder())
+      toast.success(
+        `Your purchase was successful! Transaction reference: ${reference}`
+      );
+    },
+    onClose: () => toast.error("Payment Stopped"),
   };
-
-  const increase = (id) => {
-    dispatch(increaseItemQuantity(id));
-  };
-
-  const decrease = (id) => {
-    dispatch(decreaseItemQuantity(id));
-  };
-
-  const submit = () => {
-    setOpen(!open);
-  };
-
-  
-
-  useEffect(()=>{
-    const handleLoad = ()=>{
-      dispatch(reset())
-    }
-      handleLoad()
-  },[cartItems,dispatch])
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -65,6 +68,7 @@ const MyCart = () => {
           </div>
         ) : (
           <div className="grid lg:grid-cols-3 gap-8">
+            {/* Cart Items */}
             <div className="lg:col-span-2 space-y-6">
               {cartItems.map((item) => (
                 <div
@@ -82,7 +86,7 @@ const MyCart = () => {
                         {item.title}
                       </p>
                       <p className="text-[#5F5F5F] font-inter text-[14px]">
-                        Price: ₹{item.price.toFixed(2)}
+                        Price: ₦{item.price.toFixed(2)}
                       </p>
                     </div>
                     <div className="flex justify-between items-center mt-2">
@@ -125,7 +129,7 @@ const MyCart = () => {
                           </select>
                         </div>
                         <p className="text-[#5F5F5F] font-inter text-[14px]">
-                          Total Price: ₹
+                          Total Price: ₦
                           {(item.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
@@ -158,38 +162,14 @@ const MyCart = () => {
                 <p>Total</p>
                 <p>₹{totalPrice.toFixed(2)}</p>
               </div>
-              {!open ? (
-                <button
-                  className="w-full mt-6 bg-black text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-green-600 transition-colors duration-300"
-                  onClick={submit}
-                >
-                  Proceed to Checkout
-                </button>
-              ) : (
-                <button
-                  className=" flex justify-center items-center
-                            w-full mt-6 bg-green-600 text-white py-2 rounded-lg text-sm font-inter cursor-pointer hover:bg-green-600 transition-colors duration-300"
-                  onClick={submit}
-                >
-                  <ThreeDots
-                    visible={true}
-                    height="20"
-                    width="20"
-                    color="#FFFFFF"
-                    radius="9"
-                    ariaLabel="three-dots-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                  />
-                </button>
-              )}
+
+              <div className="mt-4">
+                <PaystackButton className=" bg-[#202020] w-full text-white px-4 py-2 hover:bg-green-600 rounded-lg transition duration-300 ease-in-out cursor-pointer" {...componentProps} />
+              </div>
             </div>
           </div>
         )}
       </div>
-
-      <SelectPay open={open} close={submit} />
-
       <Footer />
     </div>
   );
