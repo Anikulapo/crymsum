@@ -76,7 +76,7 @@ const MyOrder = () => {
                     </p>
                     <p className="font-inter text-[14px] text-[#5F5F5F]">
                       Total: {""}
-                      <span className="text-black">₹{order.totalPrice.toFixed(2)}</span>
+                      <span className="text-black">₦{order.totalPrice.toFixed(2)}</span>
                     </p>
                   </div>
                 </div>
@@ -100,7 +100,7 @@ const MyOrder = () => {
                           Qty: {item.quantity}
                         </p>
                         <p className="font-inter text-[14px] text-[#5F5F5F]">
-                          Price: ₹{item.price}
+                          Price: ₦{item.price}
                         </p>
                       </div>
                     </div>
