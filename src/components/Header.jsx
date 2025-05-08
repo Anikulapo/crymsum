@@ -191,7 +191,7 @@ const Header = () => {
               </li>
             </Link>
             {/* Profile Icon */}
-            <Link to={"/profile"}>
+            <Link to={user.length == 0 ? "/me": "/profile"}>
               <li>
                 <img
                   src="/images/user.svg"
